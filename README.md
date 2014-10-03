@@ -5,6 +5,7 @@ This is a trivial LLVM pass, which can be extended to analyse or transform LLVM
 IR.  To build:
 
 	$ mkdir Build
+	$ cd Build
 	$ cmake ..
 	$ make
 
