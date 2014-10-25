@@ -15,5 +15,6 @@
 *~
 .*swp
 
-# Build directory
-Build
+# Build directories
+Debug
+Release
