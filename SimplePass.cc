@@ -5,7 +5,7 @@
 #include "llvm/IR/Instructions.h"
 #include "llvm/IR/IRBuilder.h"
 #include "llvm/IR/InstVisitor.h"
-#include "llvm/PassManager.h"
+#include "llvm/IR/LegacyPassManager.h"
 #include "llvm/Transforms/IPO/PassManagerBuilder.h"
 
 
@@ -107,7 +107,7 @@ char SimplePass::ID;
 /// This function is called by the PassManagerBuilder to add the pass to the
 /// pass manager.  You can query the builder for the optimisation level and so
 /// on to decide whether to insert the pass.
-void addSimplePass(const PassManagerBuilder &Builder, PassManagerBase &PM) {
+void addSimplePass(const PassManagerBuilder &Builder, legacy::PassManagerBase &PM) {
   PM.add(new SimplePass());
 }
 
