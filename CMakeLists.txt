@@ -6,13 +6,13 @@ if (${LLVM_CONFIG} STREQUAL "LLVM_CONFIG-NOTFOUND")
 endif()
 message(STATUS "Using llvm-config: ${LLVM_CONFIG}")
 
-exec_program(${LLVM_CONFIG}
-	ARGS --prefix
-	OUTPUT_VARIABLE LLVM_PREFIX)
+exec_program(${LLVM_CONFIG} ARGS --prefix OUTPUT_VARIABLE LLVM_PREFIX)
+exec_program(${LLVM_CONFIG} ARGS --cxxflags OUTPUT_VARIABLE LLVM_DEFINITIONS)
+exec_program(${LLVM_CONFIG} ARGS --includedir OUTPUT_VARIABLE LLVM_INCLUDE_DIRS)
+exec_program(${LLVM_CONFIG} ARGS --libdir   OUTPUT_VARIABLE LLVM_LIBRARY_DIRS)
 
 set(CMAKE_MODULE_PATH "${LLVM_PREFIX}/share/llvm/cmake")
 
-find_package(LLVM)
 set(LLVM_RUNTIME_OUTPUT_INTDIR ".")
 set(LLVM_LIBRARY_OUTPUT_INTDIR ".")
 include(HandleLLVMOptions)
