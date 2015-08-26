@@ -22,9 +22,9 @@ namespace {
 struct SimplePass : FunctionPass, InstVisitor<SimplePass>
 {
   /// The module that we're currently working on
-  Module *M;
+  Module *M = 0;
   /// The data layout of the current module.
-  DataLayout *DL;
+  DataLayout *DL = 0;
   /// Unique value.  Its address is used to identify this class.
   static char ID;
   /// Call the superclass constructor with the unique identifier as the
