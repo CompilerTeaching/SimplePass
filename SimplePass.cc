@@ -39,7 +39,7 @@ struct SimplePass : FunctionPass, InstVisitor<SimplePass>
   /// doInitialization - called when the pass manager begins running this
   /// pass on a module.  A single instance of the pass may be run on multiple
   /// modules in sequence.
-  virtual bool doInitialization(Module &Mod) override {
+  bool doInitialization(Module &Mod) override {
     M = &Mod;
     if (DL)
       delete DL;
@@ -51,7 +51,7 @@ struct SimplePass : FunctionPass, InstVisitor<SimplePass>
   /// doFinalization - called when the pass manager has finished running this
   /// pass on a module.  It is possible that the pass will be used again on
   /// another module, so reset it to its initial state.
-  virtual bool doFinalization(Module &Mod) override {
+  bool doFinalization(Module &Mod) override {
     assert(&Mod == M);
     delete DL;
     M = nullptr;
@@ -76,7 +76,7 @@ struct SimplePass : FunctionPass, InstVisitor<SimplePass>
     visitedAllocas.push_back(&AI);
   }
 
-  virtual bool runOnFunction(Function &F) {
+  bool runOnFunction(Function &F) override {
     visitedAllocas.clear();
     // The visit method is inherited by InstVisitor.  This will call each
     // of the visit*() methods, allowing individual functions to be inspected.
