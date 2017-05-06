@@ -32,7 +32,7 @@ struct SimplePass : FunctionPass, InstVisitor<SimplePass>
   SimplePass() : FunctionPass(ID) {}
 
   /// Return the name of the pass, for debugging.
-  const char *getPassName() const override {
+  StringRef getPassName() const override {
     return "Simple example pass";
   }
 
