@@ -7,7 +7,7 @@ endif()
 message(STATUS "Using llvm-config: ${LLVM_CONFIG}")
 
 exec_program(${LLVM_CONFIG} ARGS --prefix OUTPUT_VARIABLE LLVM_PREFIX)
-exec_program(${LLVM_CONFIG} ARGS --cxxflags OUTPUT_VARIABLE LLVM_DEFINITIONS)
+exec_program(${LLVM_CONFIG} ARGS --cxxflags OUTPUT_VARIABLE LLVM_CONF_DEFINITIONS)
 exec_program(${LLVM_CONFIG} ARGS --includedir OUTPUT_VARIABLE LLVM_INCLUDE_DIRS)
 exec_program(${LLVM_CONFIG} ARGS --libdir   OUTPUT_VARIABLE LLVM_LIBRARY_DIRS)
 
@@ -18,7 +18,7 @@ set(LLVM_LIBRARY_OUTPUT_INTDIR ".")
 include(HandleLLVMOptions)
 include(AddLLVM)
 
-add_definitions(${LLVM_DEFINITIONS})
+add_definitions(${LLVM_CONF_DEFINITIONS})
 include_directories(${LLVM_INCLUDE_DIRS})
 link_directories(${LLVM_LIBRARY_DIRS})
 
