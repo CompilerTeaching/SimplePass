@@ -115,7 +115,9 @@ void addSimplePass(const PassManagerBuilder &Builder, legacy::PassManagerBase &P
 /// builder to call the `addSimplePass` function at the end of adding other
 /// optimisations, so that we can insert the pass.  See the
 /// `PassManagerBuilder` documentation for other extension points.
-RegisterStandardPasses S(PassManagerBuilder::EP_OptimizerLast,
+RegisterStandardPasses S(PassManagerBuilder::EP_EnabledOnOptLevel0,
+                         addSimplePass);
+RegisterStandardPasses SOpt(PassManagerBuilder::EP_OptimizerLast,
                          addSimplePass);
 } // anonymous namespace
 
