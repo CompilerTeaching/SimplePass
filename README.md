@@ -15,9 +15,9 @@ will automatically insert itself at the end of the optimisation pipeline.
 
 To use it, run this command from the build directory:
 
-	$ clang -Xclang -load -Xclang ./SimplePass.so -c {some source file} -O1
+	$ clang -Xclang -load -Xclang ./SimplePass.so -c {some source file}
 
-The pass will not be invoked at -O0, but will at any other optimisation level.
+The pass will be invoked at any optimisation level.
 Note that trivial example programs will have all of their `alloca` instructions replaced with SSA registers by the SROA (Scalar Replacement of Aggregates) pass, so you will need to ensure that your test program has a stack allocation whose address is taken.
 The following simple example will work:
 
