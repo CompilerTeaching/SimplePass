@@ -24,7 +24,7 @@ struct SimplePass : FunctionPass, InstVisitor<SimplePass>
   /// The module that we're currently working on
   Module *M = 0;
   /// The data layout of the current module.
-  DataLayout *DL = 0;
+  const DataLayout *DL = 0;
   /// Unique value.  Its address is used to identify this class.
   static char ID;
   /// Call the superclass constructor with the unique identifier as the
@@ -41,9 +41,7 @@ struct SimplePass : FunctionPass, InstVisitor<SimplePass>
   /// modules in sequence.
   bool doInitialization(Module &Mod) override {
     M = &Mod;
-    if (DL)
-      delete DL;
-    DL = new DataLayout(M);
+    DL = &Mod.getDataLayout();
     // Return false on success.
     return false;
   }
