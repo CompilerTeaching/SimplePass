@@ -51,7 +51,6 @@ struct SimplePass : FunctionPass, InstVisitor<SimplePass>
   /// another module, so reset it to its initial state.
   bool doFinalization(Module &Mod) override {
     assert(&Mod == M);
-    delete DL;
     M = nullptr;
     DL = nullptr;
     // Return false on success.
