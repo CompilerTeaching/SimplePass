@@ -1,4 +1,5 @@
 #include "llvm/Pass.h"
+#include "llvm/Support/raw_ostream.h"
 #include "llvm/IR/Function.h"
 #include "llvm/IR/Module.h"
 #include "llvm/IR/LLVMContext.h"
@@ -69,7 +70,7 @@ struct SimplePass : FunctionPass, InstVisitor<SimplePass>
   /// instructions.
   void visitAllocaInst(AllocaInst &AI) {
     // Log the alloca to the standard error
-    AI.dump();
+    llvm::errs() << AI << '\n';
     visitedAllocas.push_back(&AI);
   }
 
@@ -85,7 +86,7 @@ struct SimplePass : FunctionPass, InstVisitor<SimplePass>
       for (auto &I : BB) {
         if (AllocaInst *AI = dyn_cast<AllocaInst>(&I)) {
           // Log the alloca to the standard error
-          AI->dump();
+          llvm::errs() << *AI << '\n';
           foundAllocas.push_back(AI);
         }
       }
